@@ -12,4 +12,8 @@ notesRouter.get('/note/:id', notesControllers.noteController);
 
 notesRouter.post('/note/delete/:id', notesControllers.deleteNoteController);
 
+notesRouter.route('/note/update/:id')
+    .get(notesControllers.getUpdatePage)
+    .post(notesControllers.updateNoteController);
+
 module.exports = notesRouter;

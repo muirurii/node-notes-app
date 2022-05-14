@@ -5,17 +5,23 @@ const allNotesController = (req, res) => {
 }
 
 const newNoteController = (req, res) => {
-    res.render('newnote.ejs', { classname: '' });
+    res.render('newnote.ejs', {
+        formError: false,
+        content: '',
+        title: ''
+    });
 }
 
 const addNoteController = (req, res) => {
     const content = req.body.content;
     const title = req.body.title;
-    if (!title || !content) return res.render('newnote.ejs', { classname: 'error' });
+    if (!title.length || !content.length) {
+        return res.render('newnote.ejs', { formError: true, content, title });
+    }
     const newNote = {
-        id: Math.floor(Math.random() * 6 + 599),
+        id: Math.floor(Math.random() * 9996 + Math.random() * 599),
         title,
-        content
+        content: [...content.slice(0, 1).toUpperCase(), ...content.slice(1)].join('')
     }
     data = {...data, notes: [...data.notes, newNote] }
     res.redirect('/');
@@ -25,6 +31,24 @@ const noteController = (req, res) => {
     const note = data.notes.find(note => note.id === +req.params.id);
     if (!note) res.status(404).render('404.ejs');
     res.render('note.ejs', { note });
+}
+
+const getUpdatePage = (req, res) => {
+    const note = data.notes.find((note) => note.id === +req.params.id);
+    const { content, title, id } = note;
+    res.render('update.ejs', { formError: false, content, title, id });
+}
+
+const updateNoteController = (req, res) => {
+    const content = req.body.content;
+    const title = req.body.title;
+    const id = +req.params.id;
+    if (!title.length || !content.length) {
+        return res.render('update.ejs', { formError: true, content, title, id });
+    }
+    data = {...data, notes: data.notes.map(note => note.id === id ? { title, content, id } : note) }
+    const updatedNote = data.notes.find((note) => note.id === id);
+    res.render('note.ejs', { note: updatedNote });
 }
 
 const deleteNoteController = (req, res) => {
@@ -37,5 +61,7 @@ module.exports = {
     newNoteController,
     addNoteController,
     noteController,
-    deleteNoteController
+    deleteNoteController,
+    getUpdatePage,
+    updateNoteController
 };

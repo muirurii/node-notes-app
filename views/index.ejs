@@ -6,32 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&display=swap" rel="stylesheet">
-    <script src="index.js" defer></script>
-    <title>My Notes</title>
+    <title>Notes App | My Notes</title>
 </head>
 
 <body>
     <header>
+        <h1>My Notes <span class="count"><%= notes.length %></span></h1>
         <%- include('./partials/nav') %>
-            <h1>My Notes</h1>
     </header>
     <div class="container">
         <div>
             <ol class="todos">
                 <% if(notes.length){ %>
                     <% notes.forEach(note=> { %>
-                        <li class="todo">
-                            <h2>
-                                <%= note.title %>
-                            </h2>
-                            <%=note.content.slice(0,70)%> ...
-                                <a href="/note/<%=note.id %>">View More</a>
+                        <li>
+                            <div class="note">
+                                <h2>
+                                    <%= note.title %>
+                                </h2>
+                                <p>
+                                    <%=note.content.trim().slice(0,150)%> ...</p>
+                                <a href="/note/<%=note.id %>" class="more">View More</a>
+                            </div>
                         </li>
                         <% })}  else {%>
-                            <p>No notes</p>
+                            <p>You have 0 notes</p>
                             <%}%>
             </ol>
         </div>

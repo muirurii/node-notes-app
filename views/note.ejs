@@ -5,28 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note
-        <%=note.id %>
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>Notes App |
+        <%=note.title %>
     </title>
 </head>
 
 <body>
     <header>
+        <h1>
+            <%= note.title %>
+        </h1>
         <%- include('./partials/nav') %>
-            <h1>
-                <%= note.title %>
-            </h1>
     </header>
     <div class="container">
-        <div>
-            <ol>
-                <li>
-                    <%=note.content %>
-                </li>
-            </ol>
-            <form action="/note/delete/<%=note.id %>" method="post">
-                <button type="submit">Delete Note</button>
-            </form>
+        <div class="note details">
+            <p>
+                <%=note.content %>
+            </p>
+            <div class="forms">
+                <a href="/note/update/<%=note.id %>">Edit</a>
+                <form action="/note/delete/<%=note.id %>" method="post">
+                    <button type="submit" class="delete">Delete Note</button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
