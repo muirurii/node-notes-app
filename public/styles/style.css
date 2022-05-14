@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Poppins", serif;
+    font-family: "Zen Maru Gothic", serif;
 }
 
 a {
@@ -11,9 +12,8 @@ a {
 
 body {
     min-height: 100vh;
-    background-color: hsl(0, 0%, 86%);
-    padding-top: 3em;
-    color: #fff;
+    background-color: #dbdbdb;
+    color: #003d44;
 }
 
 .container {
@@ -23,6 +23,8 @@ body {
 }
 
 header {
+    padding-bottom: 2em;
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,58 +37,123 @@ nav ul {
 }
 
 nav a {
-    padding: 1em;
-    color: #00081a;
+    padding: .2em 1em;
+    color: #003d44;
+    border-bottom: 1px solid #003d44;
+}
+
+nav a:hover {
+    border-color: #00af89;
 }
 
 h1 {
-    color: #00081a;
     padding: 1em 0;
 }
 
-input {
-    height: 38px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    padding-left: 1em;
-}
-
-label {
-    color: #00081a;
-    display: block;
-    padding: 1em;
-}
-
-button {
-    background-color: #00081a;
+.count {
+    font-size: .5rem;
+    background-color: #00af89;
     color: #fff;
-    padding: .7em 2em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    padding: .5em 1em;
+    border-radius: 50%;
+    position: relative;
+    top: -10px;
+    left: -4px;
 }
 
-button:hover {
-    opacity: .9;
+h1,
+h2 {
+    color: #00af89;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+
+h2 {
+    padding: .5em 0;
 }
 
 ol {
     margin-top: 2em;
-    list-style-type: lower-roman;
 }
 
-ol li {
-    color: #020714;
-    background-color: #cdd1d0;
+.note {
+    background-color: #c1d4d2;
     padding: 1em;
     margin-bottom: 1em;
     border-radius: 3px;
-    text-transform: capitalize;
-    cursor: pointer;
-    list-style-position: inside;
-    max-width: 500px;
+    overflow: hidden;
+    position: relative;
 }
 
-ol li:hover {
-    background-color: #c8d1d0;
+.note p {
+    word-wrap: break-word;
+    width: 500px;
+}
+
+.note a,
+.note button,
+.new button {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 1em;
+    background-color: #00af89;
+    color: #fff;
+    padding: .7em 1em;
+    font-size: .8rem;
+    border-radius: 3px;
+}
+
+.note .more {
+    transform: translateY(100px);
+    transition: transform 600ms;
+}
+
+.note:hover .more {
+    transform: translateY(0);
+}
+
+.note .delete {
+    margin-left: 1em;
+    background-color: #ad0101;
+}
+
+.note.details {
+    margin-top: 2em;
+    padding: 2em;
+}
+
+.forms {
+    display: flex;
+}
+
+textarea,
+input {
+    min-width: 400px;
+    border: 1px solid #c1d4d2;
+    border-radius: 3px;
+    padding-left: 1em;
+    outline: none;
+}
+
+input {
+    height: 38px;
+}
+
+label {
+    display: block;
+    padding: .7em 0;
+}
+
+.new form {
+    margin-top: 2em;
+}
+
+.new button {
+    display: block;
+    padding: 1em 2em;
+}
+
+.error {
+    color: #ad0101;
 }
