@@ -157,3 +157,11 @@ label {
 .error {
     color: #ad0101;
 }
+
+.not-found {
+    padding: 2em;
+}
+
+.not-found a {
+    color: #00af89;
+}

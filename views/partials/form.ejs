@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/style.css">
-    <title>Document</title>
-</head>
-
-<body>
-    <% if(formError){ %>
-        <p class="error">Please fill all the fields</p>
-        <% } %>
-            <label for="title">Title</label>
-            <input id="title" type="text" name="title" value="<%= title %>" placeholder="Note title">
-            <label for="content">Body</label>
-            <textarea name="content" role="textbox" id="content" placeholder="Body" cols="30" rows="10"><%= content %></textarea>
-</body>
-
-</html>
+<% if(formError){ %>
+    <p class="error">Please fill all the fields</p>
+    <% } %>
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" value="<%= title %>" placeholder="Note title">
+        <label for="content">Body</label>
+        <textarea name="content" role="textbox" id="content" placeholder="Body" cols="30" rows="10"><%= content %></textarea>

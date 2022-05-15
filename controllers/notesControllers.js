@@ -16,7 +16,7 @@ const addNoteController = (req, res) => {
     const content = req.body.content;
     const title = req.body.title;
     if (!title.length || !content.length) {
-        return res.render('newnote.ejs', { formError: true, content, title });
+        return res.status(400).render('newnote.ejs', { formError: true, content, title });
     }
     const newNote = {
         id: Math.floor(Math.random() * 9996 + Math.random() * 599),
@@ -24,12 +24,12 @@ const addNoteController = (req, res) => {
         content: [...content.slice(0, 1).toUpperCase(), ...content.slice(1)].join('')
     }
     data = {...data, notes: [...data.notes, newNote] }
-    res.redirect('/');
+    res.render('note.ejs', { note: newNote });
 }
 
 const noteController = (req, res) => {
     const note = data.notes.find(note => note.id === +req.params.id);
-    if (!note) res.status(404).render('404.ejs');
+    if (!note) return res.status(404).render('404.ejs');
     res.render('note.ejs', { note });
 }
 
@@ -44,7 +44,7 @@ const updateNoteController = (req, res) => {
     const title = req.body.title;
     const id = +req.params.id;
     if (!title.length || !content.length) {
-        return res.render('update.ejs', { formError: true, content, title, id });
+        return res.status(400).render('update.ejs', { formError: true, content, title, id });
     }
     data = {...data, notes: data.notes.map(note => note.id === id ? { title, content, id } : note) }
     const updatedNote = data.notes.find((note) => note.id === id);
